@@ -111,14 +111,17 @@ ORS_BASE_URL = os.getenv("ORS_BASE_URL", "https://api.openrouteservice.org")
 AVG_SPEED_MPH = float(os.getenv("AVG_SPEED_MPH", "55"))
 REQUEST_TIMEOUT_SECONDS = float(os.getenv("REQUEST_TIMEOUT_SECONDS", "20"))
 
-# --- Behind an nginx TLS terminator in production --------------------------
+# --- Security headers ------------------------------------------------------
+# Trust a TLS-terminating proxy in front. TLS redirect + HSTS are on by default
+# in production, but can be turned off for a plain-HTTP host (set
+# DJANGO_SECURE_SSL_REDIRECT=False) so the service is still reachable over HTTP.
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-if not DEBUG:
-    SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = not DEBUG and _env_bool("DJANGO_SECURE_SSL_REDIRECT", "True")
+SECURE_CONTENT_TYPE_NOSNIFF = not DEBUG
+if SECURE_SSL_REDIRECT:
     SECURE_HSTS_SECONDS = 31536000  # 1 year
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
-    SECURE_CONTENT_TYPE_NOSNIFF = True
 
 LOGGING = {
     "version": 1,
