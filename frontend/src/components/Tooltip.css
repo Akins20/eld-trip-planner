@@ -1,0 +1,52 @@
+.tip {
+  position: relative;
+  display: inline-flex;
+}
+
+.tip__anchor {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: help;
+  border-radius: 4px;
+}
+
+.tip__bubble {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  width: max-content;
+  max-width: 220px;
+  padding: 8px 11px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-transform: none;
+  border-radius: 8px;
+  box-shadow: var(--shadow-lift);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.16s var(--ease),
+    transform 0.16s var(--ease);
+  z-index: 50;
+}
+
+.tip__bubble::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--ink);
+}
+
+.tip__bubble.is-open {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}

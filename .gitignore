@@ -1,0 +1,42 @@
+# Python / Django
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+db.sqlite3
+staticfiles/
+.coverage
+htmlcov/
+.pytest_cache/
+.ruff_cache/
+
+# Secrets / local env (NEVER commit real keys)
+.env
+.env.*
+!.env.example
+
+# Node / Vite
+node_modules/
+dist/
+.vite/
+*.local
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Build / tmp
+/tmp/
+wheels/
+
+# Personal docs + secrets (kept local, never committed)
+docs/LOOM_SCRIPT.md
+docs/DEPLOY_VPS.md
+docs/DEPLOY_VERCEL.md
+docs/Interserver_Credentials.txt
+docs/*redential*
+*.pem
+*.key

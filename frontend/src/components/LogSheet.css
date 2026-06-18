@@ -1,0 +1,124 @@
+.sheet {
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  padding: clamp(18px, 2.6vw, 28px);
+}
+
+.sheet__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.sheet__date {
+  margin-top: 4px;
+  font-size: clamp(17px, 2.2vw, 20px);
+}
+
+.sheet__facts {
+  display: flex;
+  gap: 26px;
+  margin: 0;
+}
+
+.fact {
+  text-align: right;
+}
+
+.fact dt {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.fact dd {
+  margin: 2px 0 0;
+  font-size: 17px;
+  font-weight: 650;
+}
+
+/* The grid itself; scrolls horizontally on very small screens. */
+.sheet__grid {
+  overflow-x: auto;
+}
+
+.log-grid {
+  width: 100%;
+  min-width: 540px;
+  height: auto;
+  display: block;
+}
+
+/* The duty-status line draws itself onto the grid. */
+.log-grid__run {
+  stroke-dashoffset: var(--len);
+  animation: draw-line 0.55s var(--ease) forwards;
+}
+
+.log-grid__rowlabel {
+  font-size: 9px;
+  font-weight: 600;
+  fill: var(--muted);
+  text-anchor: end;
+  dominant-baseline: middle;
+}
+
+.log-grid__total {
+  font-size: 10px;
+  font-weight: 650;
+  fill: var(--ink);
+  text-anchor: end;
+  dominant-baseline: middle;
+}
+
+.log-grid__hour {
+  font-size: 8.5px;
+  fill: var(--faint);
+  dominant-baseline: middle;
+}
+
+.log-grid__remark {
+  font-size: 8px;
+  fill: var(--muted);
+  text-anchor: start;
+}
+
+/* Status totals recap (doubles as the grid legend). */
+.sheet__totals {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 14px 0 0;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px 22px;
+}
+
+.sheet__totals li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13.5px;
+}
+
+.sheet__swatch {
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+  flex: none;
+}
+
+.sheet__totals-label {
+  color: var(--muted);
+}
+
+.sheet__totals-val {
+  margin-left: auto;
+  font-weight: 650;
+}

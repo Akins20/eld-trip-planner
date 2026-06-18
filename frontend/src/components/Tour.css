@@ -1,0 +1,128 @@
+.tour {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+}
+
+.tour__layer {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+}
+
+.tour__layer--dim {
+  background: rgba(17, 17, 20, 0.5);
+  backdrop-filter: blur(1px);
+}
+
+/* The spotlight: a transparent rect whose huge box-shadow dims everything else. */
+.tour__spot {
+  position: fixed;
+  z-index: 1001;
+  border-radius: 12px;
+  box-shadow:
+    0 0 0 9999px rgba(17, 17, 20, 0.5),
+    0 0 0 2px rgba(255, 255, 255, 0.9);
+  pointer-events: none;
+  transition:
+    top 0.25s ease,
+    left 0.25s ease,
+    width 0.25s ease,
+    height 0.25s ease;
+}
+
+.tour__card {
+  position: fixed;
+  z-index: 1002;
+  width: min(360px, calc(100vw - 32px));
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow:
+    0 10px 40px rgba(17, 17, 20, 0.22),
+    0 2px 8px rgba(17, 17, 20, 0.1);
+  padding: 22px 22px 18px;
+  animation: tour-pop 0.22s ease both;
+}
+
+.tour__card:focus {
+  outline: none;
+}
+
+.tour__card--center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(440px, calc(100vw - 32px));
+}
+
+@keyframes tour-pop {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+}
+
+.tour__card--center {
+  animation: none;
+}
+
+.tour__skip {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  border: none;
+  background: none;
+  color: var(--faint);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 2px 4px;
+}
+
+.tour__skip:hover {
+  color: var(--ink);
+}
+
+.tour__count {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.tour__title {
+  margin-top: 8px;
+  font-size: 19px;
+}
+
+.tour__body {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+
+.tour__dots {
+  display: flex;
+  gap: 6px;
+  margin: 18px 0 14px;
+}
+
+.tour__dots span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--line-strong);
+  transition: background 0.2s ease;
+}
+
+.tour__dots span.is-on {
+  background: var(--accent);
+}
+
+.tour__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}

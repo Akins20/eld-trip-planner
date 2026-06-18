@@ -1,0 +1,9 @@
+# Development + CI dependencies (tests, linting, formatting).
+-r requirements.txt
+pytest==9.1.0
+pytest-django==4.12.0
+pytest-cov==7.1.0
+responses==0.26.1
+ruff==0.15.17
+black==26.5.1
+isort==8.0.1

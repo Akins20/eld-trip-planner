@@ -1,0 +1,104 @@
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin: clamp(40px, 9vw, 90px) auto;
+  text-align: center;
+}
+
+.loading__svg {
+  overflow: visible;
+}
+
+.loading__truck {
+  animation: truck-bob 0.9s ease-in-out infinite;
+}
+
+.loading__spokes {
+  animation: spin 0.7s linear infinite;
+  transform-box: fill-box;
+}
+
+.loading__road {
+  stroke: var(--line-strong);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 16 12;
+  animation: road-dash 0.45s linear infinite;
+}
+
+.loading__speed line {
+  stroke: var(--line-strong);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  animation: speed-fade 0.9s ease-in-out infinite;
+}
+
+.loading__speed line:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.loading__speed line:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes speed-fade {
+  0% {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  40% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-14px);
+  }
+}
+
+.loading__msg {
+  font-size: clamp(15px, 2vw, 17px);
+  font-weight: 550;
+  color: var(--ink);
+  animation: fade-up 0.4s var(--ease) both;
+}
+
+.loading__bar {
+  width: min(280px, 70vw);
+  height: 4px;
+  border-radius: 999px;
+  background: var(--line);
+  overflow: hidden;
+  position: relative;
+}
+
+.loading__bar span {
+  position: absolute;
+  inset: 0;
+  width: 40%;
+  border-radius: 999px;
+  background: var(--accent);
+  animation: bar-slide 1.2s var(--ease) infinite;
+}
+
+@keyframes bar-slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(350%);
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

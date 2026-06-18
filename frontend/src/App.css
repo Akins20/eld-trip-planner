@@ -1,0 +1,227 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Slim brand bar, always visible. */
+.masthead {
+  padding: clamp(26px, 4.5vw, 52px) 0 clamp(20px, 3vw, 34px);
+}
+
+.masthead__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.brand__mark {
+  flex: none;
+}
+
+.brand__line {
+  stroke-dasharray: 14;
+  stroke-dashoffset: 14;
+  animation: brand-draw 0.5s var(--ease) forwards;
+}
+
+@keyframes brand-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.masthead__help {
+  border: none;
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+  color: var(--ink);
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 999px;
+  transition:
+    box-shadow 0.15s var(--ease),
+    color 0.15s var(--ease);
+}
+
+.masthead__help:hover {
+  box-shadow: inset 0 0 0 1px var(--accent);
+  color: var(--accent);
+}
+
+/* The stage: hero intro + workspace. */
+.stage {
+  display: flex;
+  flex-direction: column;
+  padding-top: clamp(28px, 5vw, 56px);
+  padding-bottom: 24px;
+}
+
+.stage__intro {
+  overflow: hidden;
+  max-height: 380px;
+  margin-bottom: clamp(22px, 4vw, 36px);
+  transition:
+    max-height 0.55s var(--ease),
+    opacity 0.4s var(--ease),
+    margin 0.45s var(--ease);
+}
+
+.stage--active .stage__intro {
+  max-height: 0;
+  opacity: 0;
+  margin-bottom: 0;
+  pointer-events: none;
+}
+
+.stage__title {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(30px, 5vw, 50px);
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  max-width: 20ch;
+}
+
+.stage__sub {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: clamp(15px, 1.6vw, 17px);
+  max-width: 58ch;
+}
+
+/* Workspace glides from a full-width form to a sticky sidebar + main. */
+.workspace {
+  display: grid;
+  grid-template-columns: 100fr 0fr;
+  gap: 0;
+  align-items: start;
+  transition:
+    grid-template-columns 0.6s var(--ease),
+    gap 0.6s var(--ease);
+}
+
+.stage--active .workspace {
+  grid-template-columns: 22fr 78fr;
+  gap: clamp(22px, 3vw, 44px);
+}
+
+.workspace__form {
+  min-width: 0;
+}
+
+.stage--active .workspace__form {
+  position: sticky;
+  top: 18px;
+}
+
+.workspace__main {
+  min-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease) 0.15s;
+}
+
+.stage--active .workspace__main {
+  opacity: 1;
+  overflow: visible;
+}
+
+@media (max-width: 900px) {
+  .workspace,
+  .stage--active .workspace {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .stage--active .workspace__form {
+    position: static;
+  }
+}
+
+/* Results */
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 4vw, 48px);
+  animation: fade-up 0.5s var(--ease) both;
+}
+
+.results__split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.results__split > .stops {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.results__split > .stops .section-head {
+  margin-bottom: 14px;
+}
+
+@media (min-width: 1081px) {
+  .results__split {
+    grid-template-columns: 1.7fr 1fr;
+    height: 560px;
+  }
+  .results__split > .map-section,
+  .results__split > .stops {
+    height: 100%;
+    min-height: 0;
+  }
+  .results__split > .stops .timeline {
+    overflow-y: auto;
+    padding-right: 8px;
+  }
+}
+
+.section-head h2 {
+  font-size: clamp(18px, 2.2vw, 22px);
+}
+
+.section-head p {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Notices */
+.notice {
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  animation: pop-in 0.3s var(--ease) both;
+}
+
+.notice--error {
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.site-footer {
+  margin-top: auto;
+  padding-top: 36px;
+  padding-bottom: 36px;
+  color: var(--faint);
+  font-size: 13px;
+}

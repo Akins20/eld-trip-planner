@@ -1,0 +1,67 @@
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.timeline__item {
+  position: relative;
+  padding: 0 0 22px 30px;
+}
+
+/* Connector line between dots. */
+.timeline__item::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 18px;
+  bottom: -4px;
+  width: 2px;
+  background: var(--line);
+}
+
+.timeline__item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline__item:last-child::before {
+  display: none;
+}
+
+.timeline__dot {
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 3px solid var(--canvas);
+  box-shadow: 0 0 0 1px var(--line-strong);
+}
+
+.timeline__head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.timeline__kind {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.timeline__dur {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.timeline__label {
+  font-size: 14px;
+  margin-top: 1px;
+}
+
+.timeline__meta {
+  font-size: 12.5px;
+  color: var(--faint);
+  margin-top: 2px;
+}

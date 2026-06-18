@@ -1,0 +1,139 @@
+.trip-form {
+  container-type: inline-size;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  padding: clamp(20px, 3vw, 30px);
+}
+
+.trip-form__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 22px 26px;
+}
+
+.trip-form__row {
+  display: grid;
+  grid-template-columns: minmax(150px, 210px) minmax(190px, 250px) 1fr;
+  gap: 22px 26px;
+  align-items: end;
+  margin-top: 24px;
+}
+
+.trip-form__actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.field__label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.field__input {
+  appearance: none;
+  border: none;
+  border-bottom: 1.5px solid var(--line-strong);
+  background: transparent;
+  padding: 8px 2px;
+  font: inherit;
+  color: var(--ink);
+  transition: border-color 0.15s ease;
+}
+
+.field__input::placeholder {
+  color: var(--placeholder);
+}
+
+.field__input:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+}
+
+.field__input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.field--error .field__input {
+  border-bottom-color: var(--danger);
+}
+
+.field__msg {
+  font-size: 12.5px;
+  color: var(--faint);
+}
+
+.field__msg--error {
+  color: var(--danger);
+}
+
+.btn {
+  border: none;
+  border-radius: 11px;
+  padding: 11px 22px;
+  font-weight: 600;
+  font-size: 15px;
+  white-space: nowrap;
+  transition:
+    transform 0.08s ease,
+    background 0.15s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(37, 99, 235, 0.25);
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--muted);
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background: #f4f4f5;
+  color: var(--ink);
+}
+
+/* Reflow to a single column when the form is narrow (e.g. the sidebar). */
+@container (max-width: 560px) {
+  .trip-form__grid {
+    grid-template-columns: 1fr;
+  }
+  .trip-form__row {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+  .trip-form__actions {
+    justify-content: stretch;
+  }
+  .trip-form__actions .btn {
+    flex: 1;
+  }
+}

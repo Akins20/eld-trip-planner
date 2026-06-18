@@ -1,0 +1,8 @@
+# Runtime dependencies (what the VPS needs). Pinned for reproducible deploys.
+Django==5.2.15
+djangorestframework==3.17.1
+django-cors-headers==4.9.0
+requests==2.34.2
+python-dotenv==1.2.2
+gunicorn==26.0.0
+whitenoise==6.12.0
